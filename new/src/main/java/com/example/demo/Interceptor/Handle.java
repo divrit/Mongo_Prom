@@ -1,5 +1,9 @@
 package com.example.demo.Interceptor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,11 +17,16 @@ import com.example.demo.Model.InterceptorData;
 import com.example.demo.Model.Topics;
 import com.example.demo.Repository.InterceptorRepo;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tag;
+
 @Component
 public class Handle implements HandlerInterceptor {
 		
 		@Autowired
 		private InterceptorRepo repo;
+		@Autowired 
+		private MeterRegistry registry;
 		
 
 	@Override
@@ -56,9 +65,20 @@ public class Handle implements HandlerInterceptor {
 		
 	}
 	
+	  
+	
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
+		
+//		
+	
+	        List<Tag> tags = new ArrayList<>();
+	        tags.add(Tag.of("application.method.name", request.getMethod()));
+	        tags.add(Tag.of("application.status.code", Integer.toString(response.getStatus())));
+	       
+		
+	    
 		// TODO Auto-generated method stub
 		String methodType=request.getMethod();
 		String contentType = request.getContentType();

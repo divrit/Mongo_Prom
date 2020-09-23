@@ -40,11 +40,36 @@
     <artifactId>spring-boot-starter-actuator</artifactId>
     
 </dependency>
+<!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-datadog 
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-datadog</artifactId>
+
+</dependency>
+-->	
+<!-- 
+
 <dependency>
     <groupId>io.micrometer</groupId>
     <artifactId>micrometer-registry-prometheus</artifactId>
   
 </dependency>
+
+ -->
+ 
+   <dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-statsd</artifactId>
+</dependency>
+   
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-core</artifactId>
+    <version>1.5.1</version>
+</dependency>
+
+ 
+ 
 
 		<!-- 
 		<dependency>
